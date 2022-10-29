@@ -115,7 +115,7 @@ h1 {
 }
 
 .price-bubble {
-    display: block;
+    opacity: 0;
     width: 95%;
     background-color: var(--dark-brown);
     color: var(--very-pale-orange);

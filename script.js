@@ -8,7 +8,7 @@
     const barChart = document.querySelector('.bar-chart');
     console.log(data);
     let maxAmount = 0;
-    data.map(async obj => obj.amount).forEach(amount => {
+    data.map(obj => obj.amount).forEach(amount => {
         if (amount > maxAmount) {
             maxAmount = amount;
         }
@@ -18,14 +18,20 @@
         const barWithDay = document.createElement('div');
         barWithDay.classList.add('bar-with-day');
 
+        const barBubble = document.createElement('span');
+        barBubble.classList.add('price-bubble');
+        barBubble.textContent = `$${obj.amount}`;
+        barWithDay.append(barBubble);
+
         const bar = document.createElement('div');
         bar.classList.add('bar');
         bar.style.height = `${obj.amount * 0.12}rem`;
-
-        if (obj.amount === maxAmount) {
+        
+        if (obj.amount === 52.36) {
             bar.classList.add("max-bar");
         }
-        addHoverState(bar, `$${obj.amount}`)
+
+        addHoverState(bar);
 
         const day = document.createElement('span');
         day.classList.add('day');
@@ -35,21 +41,15 @@
         barChart.append(barWithDay);
     });
 
-    barChart.style.height = `${barChart.getBoundingClientRect().height + 36}px`;
-
-    function addHoverState(node, text) {
+    function addHoverState(node) {
         node.addEventListener('mouseover', function () {
 
-            if (!node.previousSibling) {
-                node.parentNode.insertAdjacentHTML("afterBegin", `<span class="price-bubble">${text}<span>`);
-            }
+            node.previousSibling.style.opacity = 1;
 
         });
         node.addEventListener('mouseout', function (e) {
 
-            if (node.previousSibling) {
-                node.previousSibling.remove();
-            }
+            node.previousSibling.style.opacity = 0;
 
         });
     }
