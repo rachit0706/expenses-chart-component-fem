@@ -116,7 +116,7 @@ h1 {
 
 .price-bubble {
     opacity: 0;
-    width: 95%;
+    width: 100%;
     background-color: var(--dark-brown);
     color: var(--very-pale-orange);
     font-size: .8rem;
@@ -180,4 +180,10 @@ h1 {
 
 .attribution a {
     color: hsl(228, 45%, 44%);
+}
+ 
+@media screen and (max-width:600px){
+    .price-bubble {
+        font-size: .65rem;
+    }
 }
